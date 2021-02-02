@@ -43,3 +43,19 @@ variable "power_user_role_arn" {
     description = "The ARN of your Power User IAM role (without the 'aws-reserved/sso.amazonaws.com/' bit)" 
 }
 
+variable "autoscaler_service_account_namespace" {
+    type = string
+    description = "Namespace where to create the autoscaler service account" 
+    default = "kube-system"
+}
+
+variable "autoscaler_service_account_name" {
+    type = string
+    description = "Name of the autoscaler service account" 
+    default = "cluster-autoscaler-aws-cluster-autoscaler-chart"
+}
+
+variable "autoscaler_service_account_iam_role_name" {
+    type = string
+    description = "Name of the autoscaler service account IAM role name" 
+}

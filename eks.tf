@@ -28,6 +28,18 @@ module "eks" {
       kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
       public_ip               = true
       autoscalling_enabled    = true
+      tags = [
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/${var.cluster_name}"
+          "propagate_at_launch" = "false"
+          "value"               = "owned"
+        },
+        {
+          "key"                 = "k8s.io/cluster-autoscaler/enabled"
+          "propagate_at_launch" = "false"
+          "value"               = "true"
+        }
+      ]
     }]
 
     // this allows the power user root access over the k8s cluster

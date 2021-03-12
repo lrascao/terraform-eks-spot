@@ -59,3 +59,8 @@ variable "autoscaler_service_account_iam_role_name" {
     type = string
     description = "Name of the autoscaler service account IAM role name" 
 }
+
+variable "tags" {
+    type = map(string)
+    description = "Tags to be applied"
+}

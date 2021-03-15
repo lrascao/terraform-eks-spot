@@ -18,8 +18,6 @@ module "eks" {
 
     tags = var.tags
 
-    pre_userdata = var.userdata_prefix
-
     worker_groups_launch_template = [
     {
       name                    = "spot-ng-1"
@@ -32,6 +30,7 @@ module "eks" {
       kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
       public_ip               = true
       autoscalling_enabled    = true
+      pre_userdata = var.userdata_prefix
       tags = [
         {
           "key"                 = "k8s.io/cluster-autoscaler/${var.cluster_name}"

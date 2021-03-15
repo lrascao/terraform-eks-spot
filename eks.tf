@@ -18,6 +18,8 @@ module "eks" {
 
     tags = var.tags
 
+    pre_userdata = var.userdata_prefix
+
     worker_groups_launch_template = [
     {
       name                    = "spot-ng-1"

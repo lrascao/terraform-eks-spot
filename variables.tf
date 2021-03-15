@@ -60,6 +60,11 @@ variable "autoscaler_service_account_iam_role_name" {
     description = "Name of the autoscaler service account IAM role name" 
 }
 
+variable "userdata_prefix" {
+    type = string
+    description = "Userdata to prepend to the default userdata"
+}
+
 variable "tags" {
     type = map(string)
     description = "Tags to be applied"

@@ -16,6 +16,8 @@ module "eks" {
     vpc_id          = data.aws_vpc.selected.id
     subnets         = data.aws_subnet_ids.public.ids
 
+    tags = var.tags
+
     worker_groups_launch_template = [
     {
       name                    = "spot-ng-1"

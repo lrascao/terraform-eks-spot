@@ -65,6 +65,11 @@ variable "userdata_prefix" {
     description = "Userdata to prepend to the default userdata"
 }
 
+variable "userdata_suffix" {
+    type = string
+    description = "Userdata to append to the default userdata"
+}
+
 variable "tags" {
     type = map(string)
     description = "Tags to be applied"

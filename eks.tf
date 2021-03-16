@@ -30,7 +30,8 @@ module "eks" {
       kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
       public_ip               = true
       autoscalling_enabled    = true
-      pre_userdata = var.userdata_prefix
+      pre_userdata            = var.userdata_prefix
+      additional_userdata     = var.userdata_suffix
       tags = [
         {
           "key"                 = "k8s.io/cluster-autoscaler/${var.cluster_name}"

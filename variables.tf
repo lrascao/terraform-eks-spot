@@ -21,16 +21,34 @@ variable "instance_types" {
     description = "A list of instance types on which the worker nodes will run on"
 }
 
-variable "min_size" {
+variable "min_on_demand_size" {
     type = number
     default = 1
-    description = "Minimum number of k8s workers nodes"
+    description = "Minimum number of on demand k8s workers nodes"
 }
 
-variable "max_size" {
+variable "max_on_demand_size" {
     type = number
     default = 1
-    description = "Maximum number of k8s workers nodes"
+    description = "Maximum number of on demand k8s workers nodes"
+}
+
+variable "on_demand_percentage_above_base_capacity" {
+    type = number
+    default = 10 
+    description = "Percentage of on-demand instances above"
+}
+
+variable "min_spot_size" {
+    type = number
+    default = 1
+    description = "Minimum number of spot instance k8s workers nodes"
+}
+
+variable "max_spot_size" {
+    type = number
+    default = 1
+    description = "Maximum number of spot instance k8s workers nodes"
 }
 
 variable "power_user_aws_sso_profile" {
@@ -73,17 +91,5 @@ variable "userdata_suffix" {
 variable "tags" {
     type = map(string)
     description = "Tags to be applied"
-}
-
-variable "on_demand_base_capacity" {
-    type = number
-    default = 1
-    description = "On many instances to run on-demand"
-}
-
-variable "on_demand_percentage_above_base_capacity" {
-    type = number
-    default = 25 
-    description = "If set to 25 for example, spot instances will be 1 in 4 new nodes, when auto-scaling"
 }
 

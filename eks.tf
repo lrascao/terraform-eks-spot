@@ -11,7 +11,7 @@ module "eks" {
     version = "13.2.1"
 
     cluster_name    = var.cluster_name
-    cluster_version = "1.18"
+    cluster_version = "1.19"
 
     vpc_id          = data.aws_vpc.selected.id
     subnets         = data.aws_subnet_ids.public.ids

@@ -74,3 +74,16 @@ variable "tags" {
     type = map(string)
     description = "Tags to be applied"
 }
+
+variable "on_demand_base_capacity" {
+    type = number
+    default = 1
+    description = "On many instances to run on-demand"
+}
+
+variable "on_demand_percentage_above_base_capacity" {
+    type = number
+    default = 25 
+    description = "If set to 25 for example, spot instances will be 1 in 4 new nodes, when auto-scaling"
+}
+

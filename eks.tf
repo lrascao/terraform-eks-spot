@@ -27,7 +27,10 @@ module "eks" {
       asg_min_size            = var.min_size 
       asg_max_size            = var.max_size 
       asg_desired_capacity    = 1
-      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      on_demand_base_capacity = var.on_demand_base_capacity 
+      on_demand_percentage_above_base_capacity = var.on_demand_percentage_above_base_capacity
+
+      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=`curl -s http://169.254.169.254/latest/meta-data/instance-life-cycle`"
       public_ip               = true
       autoscalling_enabled    = true
       pre_userdata            = var.userdata_prefix

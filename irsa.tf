@@ -8,12 +8,6 @@ module "iam_assumable_role_admin" {
   oidc_fully_qualified_subjects = ["system:serviceaccount:${var.autoscaler_service_account_namespace}:${var.autoscaler_service_account_name}"]
 }
 
-resource "aws_iam_policy" "cluster_autoscaler" {
-  name_prefix = "cluster-autoscaler"
-  description = "EKS cluster-autoscaler policy for cluster ${module.eks.cluster_id}"
-  policy      = data.aws_iam_policy_document.cluster_autoscaler.json
-}
-
 data "aws_iam_policy_document" "cluster_autoscaler" {
   statement {
     sid    = "clusterAutoscalerAll"
@@ -62,9 +56,9 @@ data "aws_iam_policy_document" "cluster_autoscaler" {
   }
 }
 
-// outputs
-output "autoscaler_service_account_iam_role_arn" {
-    value = module.iam_assumable_role_admin.this_iam_role_arn
-    description = "ARN of the autoscaler service account IAM role"
+resource "aws_iam_policy" "cluster_autoscaler" {
+  name_prefix = "cluster-autoscaler"
+  description = "EKS cluster-autoscaler policy for cluster ${module.eks.cluster_id}"
+  policy      = data.aws_iam_policy_document.cluster_autoscaler.json
 }
 

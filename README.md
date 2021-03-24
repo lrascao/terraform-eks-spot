@@ -106,3 +106,9 @@ $ helm install cluster-autoscaler --namespace kube-system autoscaler/cluster-aut
 $ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.4.1/components.yaml
 ```
 
+### Install the node termination handler chart [instructions](https://github.com/aws/aws-node-termination-handler)
+
+```
+$ helm repo add eks https://aws.github.io/eks-charts
+$ helm upgrade aws-node-termination-handler --namespace kube-system eks/aws-node-termination-handler --values node-termination-handler-chart-values.yaml
+```

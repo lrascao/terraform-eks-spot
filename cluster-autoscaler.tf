@@ -1,4 +1,13 @@
-module "iam_assumable_role_admin" {
+module "cluster_autoscaler_chart_values_yaml" {
+    source = "./modules/cluster-autoscaler-chart-values"
+
+    region = var.region
+    cluster_name = var.cluster_name
+    autoscaler_service_account_name = var.autoscaler_service_account_name
+    autoscaler_service_account_iam_role_arn = module.cluster_autoscaler_iam_assumable_role_admin.this_iam_role_arn
+}
+
+module "cluster_autoscaler_iam_assumable_role_admin" {
   source                        = "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc"
   version                       = "3.6.0"
   create_role                   = true

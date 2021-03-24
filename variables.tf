@@ -70,12 +70,29 @@ variable "autoscaler_service_account_namespace" {
 variable "autoscaler_service_account_name" {
     type = string
     description = "Name of the autoscaler service account" 
-    default = "cluster-autoscaler-aws-cluster-autoscaler-chart"
+    default = "aws-cluster-autoscaler-sa"
 }
 
 variable "autoscaler_service_account_iam_role_name" {
     type = string
     description = "Name of the autoscaler service account IAM role name" 
+}
+
+variable "node_termination_handler_service_account_namespace" {
+    type = string
+    description = "Namespace where to create the node termination handler service account" 
+    default = "kube-system"
+}
+
+variable "node_termination_handler_service_account_name" {
+    type = string
+    description = "Name of the node termination handler service account" 
+    default = "aws-node-termination-handler-sa"
+}
+
+variable "node_termination_handler_service_account_iam_role_name" {
+    type = string
+    description = "Name of the node termination handler service account IAM role name" 
 }
 
 variable "userdata_prefix" {

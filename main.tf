@@ -48,6 +48,11 @@ module "eks" {
               "key"                 = "k8s.io/cluster-autoscaler/node-template/label/node.kubernetes.io/lifecycle"
               "propagate_at_launch" = "true"
               "value"               = "spot"
+            },
+            {
+              "key"                 = "aws-node-termination-handler/managed"
+              "propagate_at_launch" = "true"
+              "value"               = ""
             }
           ]
         },
@@ -78,6 +83,11 @@ module "eks" {
               "key"                 = "k8s.io/cluster-autoscaler/node-template/label/node.kubernetes.io/lifecycle"
               "propagate_at_launch" = "true"
               "value"               = "on-demand"
+            },
+            {
+              "key"                 = "aws-node-termination-handler/managed"
+              "propagate_at_launch" = "true"
+              "value"               = ""
             }
           ]
         }

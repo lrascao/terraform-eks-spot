@@ -33,6 +33,10 @@ module "eks" {
     autoscaler_service_account_name = local.autoscaler_service_account_name
     autoscaler_service_account_iam_role_name = local.autoscaler_service_account_iam_role_name
 
+    // Node termination handler
+    node_termination_handler_service_account_name = local.node_termination_handler_service_account_name
+    node_termination_handler_service_account_iam_role_name = local.node_termination_handler_service_account_iam_role_name
+
     // optional arguments, defaults filled out
 
     // The AWS region the k8s cluster will run on
@@ -95,7 +99,7 @@ $ aws-vault exec <aws-profile> -- eksctl utils associate-iam-oidc-provider --clu
 ```
 $ helm repo add autoscaler https://kubernetes.github.io/autoscaler
 $ helm repo update
-$ helm install cluster-autoscaler --namespace kube-system autoscaler/cluster-autoscaler-chart --values=cluster-autoscaler-chart-values.yaml
+$ helm upgrade --install cluster-autoscaler --namespace kube-system autoscaler/cluster-autoscaler-chart --values=cluster-autoscaler-chart-values.yaml
 ```
 
 ## Add monitoring funcionality
@@ -110,5 +114,5 @@ $ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/do
 
 ```
 $ helm repo add eks https://aws.github.io/eks-charts
-$ helm upgrade aws-node-termination-handler --namespace kube-system eks/aws-node-termination-handler --values node-termination-handler-chart-values.yaml
+$ helm upgrade -install aws-node-termination-handler --namespace kube-system eks/aws-node-termination-handler --values node-termination-handler-chart-values.yaml
 ```

@@ -19,3 +19,12 @@ serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: ${node_termination_handler_service_account_iam_role_arn}
 
+affinity:
+    nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: node.kubernetes.io/lifecycle
+                operator: In
+                values:
+                - on-demand

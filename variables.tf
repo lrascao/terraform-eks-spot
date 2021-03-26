@@ -15,6 +15,12 @@ variable "cluster_name" {
     description = "The name of your k8s cluster"
 }
 
+variable "cluster_version" {
+    type = string
+    default = "1.19"
+    description = "K8s version (default: 1.19)"
+}
+
 variable "instance_types" {
     type = list(string)
     default = ["t2.small"]
